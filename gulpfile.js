@@ -8,16 +8,57 @@ var browserify = require('browserify'),
     autoprefixer = require('gulp-autoprefixer'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    handlebars = require('gulp-compile-handlebars'),
+    rename = require('gulp-rename');
 
 /* pathConfig */
 var entryPoint = './app/js/index.js',
     browserDir = './build',
     sassWatchPath = './app/scss/**/*.scss',
     jsWatchPath = './app/js/**/*.js',
+    hbsWatchPath = ['./app/hbs/*/*.hbs'];
     htmlWatchPath = './build/*.html';
+
 /**/
 
+/* hbsFiles */
+var hbsFiles = [
+    /* Define Tab Names */
+        "index"
+    ];
+/**/
+
+/**/
+/* hbs */
+gulp.task('hbs', function () {
+        templateData = {
+            locale: 'pl_PL'
+        };
+        options = {
+            ignorePartials: true,
+            batch : [
+                './app/hbs/',
+                './app/hbs/components',
+                './app/hbs/pages'
+            ],
+            helpers : {
+                capitals : function(str){
+                    return str.toUpperCase();
+                }
+            }
+        };
+
+    for (var i = 0; i < hbsFiles.length; i++) {
+        gulp.src('./app/hbs/pages/' + hbsFiles[i] + '.hbs')
+            .pipe(handlebars(templateData, options))
+            .pipe(rename(hbsFiles[i] + '.html'))
+            .pipe(gulp.dest('./build'));
+    }
+});
+/**/
+
+/* JS */
 gulp.task('js', function () {
     return browserify(entryPoint, {debug: true, extensions: ['es6']})
         .transform("babelify", {presets: ["es2015"]})
@@ -29,15 +70,9 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./build/js/'))
         .pipe(browserSync.reload({stream: true}));
 });
+/**/
 
-gulp.task('browser-sync', function () {
-    browserSync.init({
-        "server": {
-            "baseDir": browserDir
-        }
-    });
-});
-
+/* Scss */
 gulp.task('sass', function () {
     return gulp.src(sassWatchPath)
         .pipe(sourcemaps.init())
@@ -49,14 +84,31 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./build/css'))
         .pipe(browserSync.reload({stream: true}));
 });
+/**/
 
+/* browserSync */
+gulp.task('browser-sync', function () {
+    browserSync.init({
+        "server": {
+            "baseDir": browserDir
+        }
+    });
+});
+/**/
+
+/* Watch */
 gulp.task('watch', function () {
     gulp.watch(jsWatchPath, ['js']);
     gulp.watch(sassWatchPath, ['sass']);
+    gulp.watch(hbsWatchPath, ['hbs']);
     gulp.watch(htmlWatchPath, function () {
         return gulp.src('')
             .pipe(browserSync.reload({stream: true}))
     });
 });
-// Run project
-gulp.task('run', ['js', 'sass', 'watch', 'browser-sync']);
+
+/**/
+
+/* Run project */
+gulp.task('run', ['js', 'hbs', 'sass', 'watch', 'browser-sync']);
+/**/
