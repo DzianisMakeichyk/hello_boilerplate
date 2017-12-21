@@ -127,7 +127,7 @@ gulp.task('run', ['js', 'hbs', 'scss', 'watch', 'browser-sync']);
 
 // Production Styles w/o lint, source maps & with compression to optimize speed
 gulp.task('hbs-prod', function() {
-    return gulp.src(hbsWatchPath)
+    return gulp.src(htmlWatchPath)
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
