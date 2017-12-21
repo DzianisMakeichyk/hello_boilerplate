@@ -49,7 +49,7 @@ gulp.task('hbs', function () {
             ignorePartials: true,
             batch : [
                 //If need add more direction here
-                './app/hbs/information',
+                './app/hbs/informations',
                 './app/hbs/components',
                 './app/hbs/pages',
                 './app/hbs/'
