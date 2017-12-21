@@ -5,20 +5,21 @@
 <meta http-equiv="X-UA-COMPATIBLE" content="IE-EmulateIE9">
 
 <title>{{title}}</title>
+<title>{{description.title}}</title>
 
 <!-- Social Meta -->
 
-<meta name="keywords" content="Portfolio, UX design, UI design, hetic, webdesigner">
-<meta name="author" content="Dzianis Makeichyk" />
-<meta name="copyright" content="© Copyright 2017 - Dzianis Makeichyk" />
+<meta name="keywords" content="{{keywords}}">
+<meta name="author" content="{{author}}" />
+<meta name="copyright" content="{{copyright}}" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#{{color_site}}">
 
 <!-- Robots -->
-<meta name="location" content="Warsaw, Poland">
 
+<meta name="location" content="{{location}}">
 <!-- Icons -->
 <link rel="icon" href="./favicon/favicon.ico">
 
@@ -43,14 +44,14 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{url_site}}">
 <meta property="og:title" content="{{title}}">
-<meta property="og:image" content="./images/{{share_image}}.jpg">
+<meta property="og:image" content="./img/share/{{share_image}}.jpg">
 <meta property="og:description" content="{{description}}">
 <meta property="og:site_name" content="{{site_name}}">
 <meta property="og:locale" content="{{locale}}">
 
 <!-- Facebook meta -->
 <meta property="og:title" content="{{title}}"/>
-<meta property="og:image" content="./images/share/{{share_image}}.jpg"/>
+<meta property="og:image" content="./img/share/{{share_image}}.jpg"/>
 <meta property="og:url" content="{{url_site}}"/>
 <meta property="og:site-name" content="{{site_name}}"/>
 <meta name="description" content="{{description}}"/>
@@ -58,12 +59,12 @@
 <!-- Twitter meta -->
 <meta name="twitter:card" content="summary_large_image">
 <!-- Twitter name -->
-<meta name="twitter:site" content="@hello">
+<meta name="twitter:site" content="{{content}}">
 <!-- Twitter name -->
-<meta name="twitter:creator" content="@hello">
+<meta name="twitter:creator" content="{{content}}">
 <meta name="twitter:title" content="{{title}}">
 <meta name="twitter:description" content="{{description}}">
-<meta name="twitter:image:src" content="./images/{{share_image}}.jpg">
+<meta name="twitter:image:src" content="./img/share/{{share_image}}.jpg">
 
 <!-- GOOGLE + Share -->
 <meta itemprop="name" content="{{title}}">
@@ -71,4 +72,4 @@
 <meta itemprop="image" content="./images/share/{{share_image}}.jpg">
 
 <!-- CSS -->
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/main.css">

@@ -22,6 +22,9 @@ var browserify = require('browserify'),
     cache = require('gulp-cache'),
     htmlmin = require('gulp-htmlmin');
 
+/* description */
+var description = './description.json';
+
 /* pathConfig */
 var entryPoint = './app/js/index.js',
     browserDir = './build',
@@ -29,7 +32,6 @@ var entryPoint = './app/js/index.js',
     jsWatchPath = './app/js/**/*.js',
     hbsWatchPath = ['./app/hbs/**/*.hbs'];
     htmlWatchPath = './build/*.html';
-
 /**/
 
 /* hbsFiles */
@@ -38,13 +40,10 @@ var hbsFiles = [
         "index"
     ];
 /**/
-
 /**/
 /* hbs */
 gulp.task('hbs', function () {
-        templateData = {
-            locale: 'pl_PL'
-        };
+        templateData = description;
         options = {
             ignorePartials: true,
             batch : [
@@ -176,4 +175,6 @@ gulp.task('img-prod', function() {
         .pipe(gulp.dest('dist/img'))
 });
 
+/* Build project */
 gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'img-prod']);
+/**/
