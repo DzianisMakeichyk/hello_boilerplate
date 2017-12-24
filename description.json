@@ -1,4 +1,14 @@
 
   {
-    "title": "Hello"
+    "title": "Hello",
+    "locale": "pl_PL",
+    "keywords": "Hello",
+    "author": "Hello",
+    "copyright": "Hello",
+    "color_site": "Hello",
+    "location": "Hello",
+    "url_site": "Hello",
+    "share_image": "Hello",
+    "site_name": "Hello",
+    "content": "Hello"
   }
