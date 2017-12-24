@@ -23,7 +23,7 @@ var browserify = require('browserify'),
     htmlmin = require('gulp-htmlmin');
 
 /* description */
-var description = './description.json';
+var description = require('./description.json');
 
 /* pathConfig */
 var entryPoint = './app/js/index.js',
@@ -40,7 +40,7 @@ var hbsFiles = [
         "index"
     ];
 /**/
-/**/
+
 /* hbs */
 gulp.task('hbs', function () {
         templateData = description;
