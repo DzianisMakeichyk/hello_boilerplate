@@ -83,6 +83,14 @@ gulp.task('js', function () {
 });
 /**/
 
+/* JS ES5 */
+gulp.task('js-ES5', function () {
+    return gulp.src(jsWatchPath)
+        .pipe(rename('scripts.js'))
+        .pipe(gulp.dest('./build/js/'))
+});
+/**/
+
 /* Scss */
 gulp.task('scss', function () {
     return gulp.src(sassWatchPath)
@@ -119,8 +127,24 @@ gulp.task('watch', function () {
 });
 /**/
 
-/* Run project */
+/* Watch-ES^ */
+gulp.task('watch-ES5', function () {
+    gulp.watch(jsWatchPath, ['js-ES5']);
+    gulp.watch(sassWatchPath, ['scss']);
+    gulp.watch(hbsWatchPath, ['hbs']);
+    gulp.watch(htmlWatchPath, function () {
+        return gulp.src('')
+            .pipe(browserSync.reload({stream: true}))
+    });
+});
+/**/
+
+/* Run project (ES6)*/
 gulp.task('run', ['js', 'hbs', 'scss', 'watch', 'browser-sync']);
+/**/
+
+/* Run project (ES5)*/
+gulp.task('run-ES5', ['js-ES5', 'hbs', 'scss', 'watch-ES5', 'browser-sync']);
 /**/
 
 // Production Styles w/o lint, source maps & with compression to optimize speed
