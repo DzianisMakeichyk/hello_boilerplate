@@ -110,7 +110,7 @@ gulp.task('browser-sync', function () {
 /* Watch */
 gulp.task('watch', function () {
     gulp.watch(jsWatchPath, ['js']);
-    gulp.watch(sassWatchPath, ['sass']);
+    gulp.watch(sassWatchPath, ['scss']);
     gulp.watch(hbsWatchPath, ['hbs']);
     gulp.watch(htmlWatchPath, function () {
         return gulp.src('')
