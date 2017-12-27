@@ -3,6 +3,7 @@
 # dependencies
 node_modules
 build
+zip
 
 # testing
 coverage
@@ -11,5 +12,6 @@ coverage
 .DS_Store
 .env
 npm-debug.log
+package-lock.json
 
 .idea/

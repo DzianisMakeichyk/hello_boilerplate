@@ -5,7 +5,7 @@
 //
 
 @each $breakpoint in map-keys($grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
+  @include breakpoint($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
     .d#{$infix}-none         { display: none !important; }

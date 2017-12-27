@@ -20,10 +20,12 @@ var browserify = require('browserify'),
     pump = require('pump'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
-    htmlmin = require('gulp-htmlmin');
+    htmlmin = require('gulp-htmlmin'),
+    zip = require('gulp-zip');
 
 /* description */
-var templateData = require('./description.json');
+var templateData = require('./page-description.json'),
+    hbsFiles = require('./pages.json');
 
 /* pathConfig */
 var entryPoint = './app/js/index.js',
@@ -32,18 +34,12 @@ var entryPoint = './app/js/index.js',
     jsWatchPath = './app/js/**/*.js',
     hbsWatchPath = ['./app/hbs/**/*.hbs'];
     htmlWatchPath = './build/*.html';
-/**/
-
-/* hbsFiles */
-var hbsFiles = [
-    /* Define Tab Names */
-        "index"
-    ];
+    fontsWatchPath = './app/fonts/*.*';
 /**/
 
 /* hbs */
 gulp.task('hbs', function () {
-        templateData;
+        templateData,
         options = {
             ignorePartials: true,
             batch : [
@@ -115,6 +111,13 @@ gulp.task('browser-sync', function () {
 });
 /**/
 
+/* Fonts */
+gulp.task('fonts', function() {
+    return gulp.src(fontsWatchPath)
+        .pipe(gulp.dest('build/fonts/'));
+});
+/**/
+
 /* Watch */
 gulp.task('watch', function () {
     gulp.watch(jsWatchPath, ['js']);
@@ -127,7 +130,7 @@ gulp.task('watch', function () {
 });
 /**/
 
-/* Watch-ES^ */
+/* Watch-ES5 */
 gulp.task('watch-ES5', function () {
     gulp.watch(jsWatchPath, ['js-ES5']);
     gulp.watch(sassWatchPath, ['scss']);
@@ -140,11 +143,11 @@ gulp.task('watch-ES5', function () {
 /**/
 
 /* Run project (ES6)*/
-gulp.task('run', ['js', 'hbs', 'scss', 'watch', 'browser-sync']);
+gulp.task('run', ['js', 'hbs', 'scss', 'watch', 'fonts', 'browser-sync']);
 /**/
 
 /* Run project (ES5)*/
-gulp.task('run-ES5', ['js-ES5', 'hbs', 'scss', 'watch-ES5', 'browser-sync']);
+gulp.task('run-ES5', ['js-ES5', 'hbs', 'scss', 'watch-ES5', 'fonts', 'browser-sync']);
 /**/
 
 // Production Styles w/o lint, source maps & with compression to optimize speed
@@ -199,6 +202,19 @@ gulp.task('img-prod', function() {
         .pipe(gulp.dest('dist/img'))
 });
 
+gulp.task('fonts', function() {
+    return gulp.src(fontsWatchPath)
+        .pipe(gulp.dest('dist/fonts/'));
+});
+
 /* Build project */
-gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'img-prod']);
+gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'fonts-prod', 'img-prod']);
+/**/
+
+/* Archive */
+gulp.task('zip', function () {
+    gulp.src('dist/*')
+        .pipe(zip('archive.zip'))
+        .pipe(gulp.dest('zip'))
+});
 /**/

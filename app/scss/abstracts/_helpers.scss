@@ -1,0 +1,13 @@
+.container {
+  display: block;
+  width: 100%;
+  padding: $base-padding-page-mobile;
+
+  @include breakpoint(medium) {
+    padding: $base-padding-page-medium;
+  }
+
+  @include breakpoint(large) {
+    padding: $base-padding-page-large;
+  }
+}
