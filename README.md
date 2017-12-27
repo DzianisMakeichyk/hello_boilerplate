@@ -24,7 +24,7 @@ Choose one of the following options:
     2.1 ES6 version - `gulp run`
     <br/>
     2.2 ES5 version - `gulp run-ES5`
-3.  [Favicon Generator](https://www.favicon-generator.org/)
+3. Use [Favicon Generator](https://www.favicon-generator.org/)
 4. Build project `gulp build`
 4. Zip project `gulp zip`
 
