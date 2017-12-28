@@ -58,11 +58,12 @@ table {
 }
 
 body {
-  font-family: $base-font;
-  line-height: $base-line-height;
-  font-weight: $base-weight;
-  font-size: $base-size;
-  color: $base-color;
+  font-family:   $base-font;
+  line-height:   $base-line-height;
+  font-weight:   $base-weight;
+  font-size:     $base-size;
+  color:         $base-color;
+  margin: 0;
 }
 
 ::selection {
