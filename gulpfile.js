@@ -21,7 +21,8 @@ var browserify = require('browserify'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
     htmlmin = require('gulp-htmlmin'),
-    zip = require('gulp-zip');
+    zip = require('gulp-zip'),
+    concat = require('gulp-concat');
 
 /* description */
 var templateData = require('./page-description.json'),
@@ -82,7 +83,9 @@ gulp.task('js', function () {
 /* JS ES5 */
 gulp.task('js-ES5', function () {
     return gulp.src(jsWatchPath)
-        .pipe(rename('scripts.js'))
+        .pipe(sourcemaps.init())
+        .pipe(concat('scripts.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./build/js/'))
 });
 /**/
