@@ -40,11 +40,11 @@ Choose one of the following options:
     detection
 * Mobile First.
 * Media Queries:
-    * `@include breakpoint(small/medium/medium-lg/large)`
-    * small: `576px`
-    * medium: `768px`
-    * medium-lg: `1024px`
-    * large: `1280px`
+    * `@include breakpoint(sm/md/lg/xl)`
+    * sm: `576px`
+    * md: `768px`
+    * lg: `1024px`
+    * xl: `1280px`
 * No container max widths only one container max width (last)
 * `body.scss` - base normalize.css with base helpers
 * Useful CSS helper classes.

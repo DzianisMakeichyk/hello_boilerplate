@@ -84,7 +84,7 @@ gulp.task('js', function () {
 gulp.task('js-ES5', function () {
     return gulp.src(jsWatchPath)
         .pipe(sourcemaps.init())
-        .pipe(useref(jsWatchPath))
+        .pipe(useref())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./build/js/'))
 });
@@ -92,7 +92,7 @@ gulp.task('js-ES5', function () {
 
 /* Scss */
 gulp.task('scss', function () {
-    return gulp.src(sassWatchPath)
+    return gulp.src('./app/scss/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
