@@ -22,11 +22,11 @@ var browserify = require('browserify'),
     cache = require('gulp-cache'),
     htmlmin = require('gulp-htmlmin'),
     zip = require('gulp-zip'),
-    concat = require('gulp-concat');
+    useref = require('gulp-useref');
 
 /* description */
-var templateData = require('./page-description.json'),
-    hbsFiles = require('./pages.json');
+var templateData = require('./app/description/page-description.json'),
+    hbsFiles = require('./app/description/pages.json');
 
 /* pathConfig */
 var entryPoint = './app/js/index.js',
@@ -84,7 +84,7 @@ gulp.task('js', function () {
 gulp.task('js-ES5', function () {
     return gulp.src(jsWatchPath)
         .pipe(sourcemaps.init())
-        .pipe(concat('scripts.js'))
+        .pipe(useref(jsWatchPath))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./build/js/'))
 });
