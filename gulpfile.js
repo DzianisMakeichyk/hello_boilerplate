@@ -82,7 +82,7 @@ gulp.task('js', function () {
 
 /* JS ES5 */
 gulp.task('js-ES5', function () {
-    return gulp.src(jsWatchPath)
+    return gulp.src(['./app/js/index.js', jsWatchPath])
         .pipe(sourcemaps.init())
         .pipe(concat('scripts.js'))
         .pipe(sourcemaps.write())
