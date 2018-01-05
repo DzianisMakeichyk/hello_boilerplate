@@ -16,13 +16,16 @@ var browserify = require('browserify'),
     postcssDiscardEmpty = require('postcss-discard-empty'),
     postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
     postcssRoundSubpixels = require('postcss-round-subpixels'),
-    uglify = require('gulp-uglify'),
     pump = require('pump'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
     htmlmin = require('gulp-htmlmin'),
     zip = require('gulp-zip'),
-    useref = require('gulp-useref');
+    useref = require('gulp-useref'),
+    uglifyjs = require('uglify-js');
+    /**/
+    composer = require('gulp-uglify/composer');
+    pump = require('pump');
 
 /* description */
 var templateData = require('./app/description/page-description.json'),
@@ -37,6 +40,8 @@ var entryPoint = './app/js/scripts.js',
     htmlWatchPath = './build/*.html';
     fontsWatchPath = './app/fonts/*.*';
 /**/
+
+var minify = composer(uglifyjs, console);
 
 /* hbs */
 gulp.task('hbs', function () {
@@ -189,7 +194,7 @@ gulp.task('scss-prod', function () {
 gulp.task('js-prod', function (cb) {
     pump([
             gulp.src('./build/js/*.js'),
-            uglify('./build/js/*.js'),
+            minify('./build/js/*.js'),
             gulp.dest('dist/js')
         ],
         cb
