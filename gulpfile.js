@@ -25,7 +25,8 @@ var browserify = require('browserify'),
     uglifyjs = require('uglify-js');
     /**/
     composer = require('gulp-uglify/composer');
-    pump = require('pump');
+    pump = require('pump'),
+    image = require('gulp-image');
 
 /* description */
 var templateData = require('./app/description/page-description.json'),
@@ -203,11 +204,18 @@ gulp.task('js-prod', function (cb) {
 
 gulp.task('img-prod', function() {
     return gulp.src('build/img/**/*.+(png|jpg|jpeg|gif|svg)')
-        .pipe(cache(imagemin({
-            interlaced: true,
-            svgoPlugins: [{removeViewBox: true}]
-        })))
-        .pipe(gulp.dest('dist/img'))
+        .pipe(image({
+            pngquant: true,
+            optipng: false,
+            zopflipng: true,
+            jpegRecompress: false,
+            mozjpeg: true,
+            guetzli: false,
+            gifsicle: true,
+            svgo: true,
+            concurrent: 10
+        }))
+        .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('fonts', function() {
