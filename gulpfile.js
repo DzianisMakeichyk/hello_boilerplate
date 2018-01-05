@@ -200,6 +200,19 @@ gulp.task('js-prod', function (cb) {
     );
 });
 
+gulp.task('js-prod-ES5', function (cb) {
+    pump([
+            gulp.src(jsWatchPath),
+            sourcemaps.init(),
+            useref(),
+            sourcemaps.write(),
+            minify(),
+            gulp.dest('dist/js')
+        ],
+        cb
+    );
+});
+
 gulp.task('img-prod', function() {
     return gulp.src('build/img/**/*.+(png|jpg|jpeg|gif|svg)')
         .pipe(image({
@@ -223,6 +236,8 @@ gulp.task('fonts', function() {
 
 /* Build project */
 gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'fonts', 'img-prod']);
+
+gulp.task('build-ES5', ['hbs-prod', 'scss-prod', 'js-prod-ES5', 'fonts', 'img-prod']);
 /**/
 
 /* Archive */
