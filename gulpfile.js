@@ -211,7 +211,7 @@ gulp.task('fonts', function() {
 });
 
 /* Build project */
-gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'fonts-prod', 'img-prod']);
+gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'fonts', 'img-prod']);
 /**/
 
 /* Archive */
