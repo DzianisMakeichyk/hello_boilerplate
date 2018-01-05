@@ -29,7 +29,7 @@ var templateData = require('./app/description/page-description.json'),
     hbsFiles = require('./app/description/pages.json');
 
 /* pathConfig */
-var entryPoint = './app/js/index.js',
+var entryPoint = './app/js/scripts.js',
     browserDir = './build',
     sassWatchPath = './app/scss/**/*.scss',
     jsWatchPath = './app/js/**/*.js',
