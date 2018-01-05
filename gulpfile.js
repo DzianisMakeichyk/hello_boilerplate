@@ -189,7 +189,7 @@ gulp.task('scss-prod', function () {
 gulp.task('js-prod', function (cb) {
     pump([
             gulp.src('./build/js/*.js'),
-            uglify(),
+            uglify('./build/js/*.js'),
             gulp.dest('dist/js')
         ],
         cb
