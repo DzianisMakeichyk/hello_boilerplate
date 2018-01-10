@@ -45,6 +45,7 @@ Choose one of the following options:
     * md: `768px`
     * lg: `1024px`
     * xl: `1280px`
+    * xxl: `1400px`
 * No container max widths only one container max width (last)
 * `body.scss` - base normalize.css with base helpers
 * Useful CSS helper classes.

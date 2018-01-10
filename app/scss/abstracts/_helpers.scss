@@ -1,13 +1,51 @@
 .container {
   display: block;
   width: 100%;
-  padding: $base-padding-page-mobile;
+  padding: $base-padding-page-sm;
 
   @include breakpoint(md) {
-    padding: $base-padding-page-medium;
+    padding: $base-padding-page-md;
+  }
+
+  @include breakpoint(lg) {
+    padding: $base-padding-page-lg;
   }
 
   @include breakpoint(xl) {
-    padding: $base-padding-page-large;
+    padding: $base-padding-page-xl;
+  }
+
+  @include breakpoint(xxl) {
+    padding: $base-padding-page-xxl;
+  }
+}
+
+.description {
+  font-size: 14px;
+
+  @include breakpoint(xl) {
+    font-size: 16px;
+  }
+}
+
+.small-description {
+  font-size: 12px;
+}
+
+//Color Class's
+@if $colors-class != null {
+  @each $color-name, $color-var in $colors-class {
+    .font-color-#{$color-name} {
+      color: $color-var;
+    }
+  }
+}
+
+//Color Class's
+@if $weight-class != null {
+  @each $weight-name, $weight-var in $weight-class {
+    .font-weight-#{$weight-name} {
+      font-weight: $weight-var;
+    }
   }
 }

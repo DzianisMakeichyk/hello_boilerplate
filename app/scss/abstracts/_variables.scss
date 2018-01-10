@@ -18,6 +18,25 @@ $orange: #f6a319;
 $white: #fff;
 $black: #000;
 
+//Class Colors
+$colors-class:
+        white $white,
+        black $black;
+        // or null
+
+//Class Weight
+$weight-class:
+        thin         $font-thin,
+        extra-light  $font-extra-light,
+        light        $font-light,
+        normal       $font-normal,
+        medium       $font-medium,
+        semi-bold    $font-semi-bold,
+        bold         $font-bold,
+        extra-bold   $font-extra-bold,
+        black        $font-black;
+        // or null
+
 /* Base */
 $base-font:               'Montserrat', sans-serif;
 $base-size:               16px;
@@ -29,6 +48,8 @@ $selection-background:    $white;
 
 /* Base variables page */
 $base-max-width:            1600px;
-$base-padding-page-mobile:  0 15px;
-$base-padding-page-medium:  0 20px;
-$base-padding-page-large:   0 25px;
+$base-padding-page-sm:      0 15px;
+$base-padding-page-md:      0 20px;
+$base-padding-page-lg:      0 25px;
+$base-padding-page-xl:      0 25px;
+$base-padding-page-xxl:     0 25px;
