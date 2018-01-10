@@ -1,39 +1,37 @@
 //Main menu options
-$menu-breakpoint: lg;
-$menu-background-color: $yellow;
+$menu-background-color:       $yellow;
+$menu-breakpoint:             lg;
 
 //Menu padding's
-$menu-open-background-color: $black;
-$menu-padding-sm: 25px 0; //or null
-$menu-padding-md: 25px 0; //or null
-$menu-padding-lg: 25px 0; //or null
-$menu-padding-xl: 25px 0; //or null
+$menu-open-background-color:   $black;
+$menu-padding-sm:              25px 0; //or null
+$menu-padding-md:              25px 0; //or null
+$menu-padding-lg:              25px 0; //or null
+$menu-padding-xl:              25px 0; //or null
 
 //Menu links
-$menu-color: $white;
-$menu-letter-spacing: 1px;
-$menu-line-height: 44px;
+$menu-letter-spacing:          1px;
+$menu-line-height:             44px;
+$menu-color:                   $white;
 
 //Menu links fonts
-$menu-font-size-sm: 16px; //or null
-$menu-font-size-md: 16px; //or null
-$menu-font-size-lg: 16px; //or null
-$menu-font-size-xl: 16px; //or null
+$menu-font-size-sm:            16px; //or null
+$menu-font-size-md:            16px; //or null
+$menu-font-size-lg:            16px; //or null
+$menu-font-size-xl:            16px; //or null
 
-$menu-color-hover: $black;
-$menu-text-transform: true;
+$menu-text-transform:          true;
+$menu-color-hover:             $black;
 
 //Logo options
-$logo-width-sm: 50px; //or null
-$logo-width-md: 70px; //or null
-$logo-width-lg: 70px; //or null
-$logo-width-xl: 70px; //or null
+$logo-width-sm:                50px; //or null
+$logo-width-md:                70px; //or null
+$logo-width-lg:                70px; //or null
+$logo-width-xl:                70px; //or null
 
 //Burger
-$burger-color: $black;
-$burger-color-is-active: $white;
-$burger-width: 32px;
-$burger-height: 18px;
+$burger-color-is-active:       $white;
+$burger-color:                 $black;
 
 .menu-container {
   background-color: $menu-background-color;
@@ -141,8 +139,8 @@ $burger-height: 18px;
 // Burger
 .nav-button {
   position: relative;
-  width: $burger-width;
-  height: $burger-height;
+  width: 32px;
+  height: 18px;
   margin: 0 0 0 auto;
   cursor: pointer;
   z-index: 200;
