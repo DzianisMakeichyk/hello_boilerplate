@@ -40,7 +40,8 @@ $burger-height: 18px;
 
   //If menu position fixed
   &.menu-fixed {
-
+    position: fixed;
+    width: 100%;
   }
 
   //Is scrolling

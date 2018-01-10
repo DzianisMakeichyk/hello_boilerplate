@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // Menu
+    var menuContainer = $('.menu-container');
+
     $('.nav-button').click(function () {
-        $('.menu-container').toggleClass('is-active');
+        menuContainer.toggleClass('is-active');
     });
 });
