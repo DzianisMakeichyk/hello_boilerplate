@@ -20,15 +20,12 @@ var browserify = require('browserify'),
     htmlmin = require('gulp-htmlmin'),
     zip = require('gulp-zip'),
     useref = require('gulp-useref'),
-    uglifyjs = require('uglify-js');
-    /**/
-    composer = require('gulp-uglify/composer');
-    pump = require('pump'),
+    uglifyjs = require('uglify-js'),
+    composer = require('gulp-uglify/composer'),
     image = require('gulp-image');
 
 /* description */
-var templateData = require('./app/description/page-description.json'),
-    hbsFiles = require('./app/description/pages.json');
+var hbsFiles = require('./app/description/pages.json');
 
 /* pathConfig */
 var entryPoint = './app/js/scripts.js',
@@ -44,7 +41,7 @@ var minify = composer(uglifyjs, console);
 
 /* hbs */
 gulp.task('hbs', function () {
-        templateData,
+        templateData = '',
         options = {
             ignorePartials: true,
             batch : [
@@ -53,12 +50,7 @@ gulp.task('hbs', function () {
                 './app/hbs/components',
                 './app/hbs/pages',
                 './app/hbs/'
-            ],
-            helpers : {
-                capitals : function(str){
-                    return str.toUpperCase();
-                }
-            }
+            ]
         };
 
     for (var i = 0; i < hbsFiles.length; i++) {
