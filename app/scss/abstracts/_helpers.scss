@@ -3,11 +3,11 @@
   width: 100%;
   padding: $base-padding-page-mobile;
 
-  @include breakpoint(medium) {
+  @include breakpoint(md) {
     padding: $base-padding-page-medium;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(xl) {
     padding: $base-padding-page-large;
   }
 }

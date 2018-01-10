@@ -16,20 +16,19 @@ var browserify = require('browserify'),
     postcssDiscardEmpty = require('postcss-discard-empty'),
     postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
     postcssRoundSubpixels = require('postcss-round-subpixels'),
-    uglify = require('gulp-uglify'),
     pump = require('pump'),
-    imagemin = require('gulp-imagemin'),
-    cache = require('gulp-cache'),
     htmlmin = require('gulp-htmlmin'),
     zip = require('gulp-zip'),
-    concat = require('gulp-concat');
+    useref = require('gulp-useref'),
+    uglifyjs = require('uglify-js'),
+    composer = require('gulp-uglify/composer'),
+    image = require('gulp-image');
 
 /* description */
-var templateData = require('./page-description.json'),
-    hbsFiles = require('./pages.json');
+var hbsFiles = require('./app/description/pages.json');
 
 /* pathConfig */
-var entryPoint = './app/js/index.js',
+var entryPoint = './app/js/scripts.js',
     browserDir = './build',
     sassWatchPath = './app/scss/**/*.scss',
     jsWatchPath = './app/js/**/*.js',
@@ -38,9 +37,11 @@ var entryPoint = './app/js/index.js',
     fontsWatchPath = './app/fonts/*.*';
 /**/
 
+var minify = composer(uglifyjs, console);
+
 /* hbs */
 gulp.task('hbs', function () {
-        templateData,
+        templateData = '',
         options = {
             ignorePartials: true,
             batch : [
@@ -49,12 +50,7 @@ gulp.task('hbs', function () {
                 './app/hbs/components',
                 './app/hbs/pages',
                 './app/hbs/'
-            ],
-            helpers : {
-                capitals : function(str){
-                    return str.toUpperCase();
-                }
-            }
+            ]
         };
 
     for (var i = 0; i < hbsFiles.length; i++) {
@@ -84,7 +80,7 @@ gulp.task('js', function () {
 gulp.task('js-ES5', function () {
     return gulp.src(['./app/js/index.js', jsWatchPath])
         .pipe(sourcemaps.init())
-        .pipe(concat('scripts.js'))
+        .pipe(useref())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./build/js/'))
 });
@@ -92,7 +88,7 @@ gulp.task('js-ES5', function () {
 
 /* Scss */
 gulp.task('scss', function () {
-    return gulp.src(sassWatchPath)
+    return gulp.src('./app/scss/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
@@ -189,7 +185,20 @@ gulp.task('scss-prod', function () {
 gulp.task('js-prod', function (cb) {
     pump([
             gulp.src('./build/js/*.js'),
-            uglify(),
+            minify('./build/js/*.js'),
+            gulp.dest('dist/js')
+        ],
+        cb
+    );
+});
+
+gulp.task('js-prod-ES5', function (cb) {
+    pump([
+            gulp.src(jsWatchPath),
+            sourcemaps.init(),
+            useref(),
+            sourcemaps.write(),
+            minify(),
             gulp.dest('dist/js')
         ],
         cb
@@ -198,11 +207,18 @@ gulp.task('js-prod', function (cb) {
 
 gulp.task('img-prod', function() {
     return gulp.src('build/img/**/*.+(png|jpg|jpeg|gif|svg)')
-        .pipe(cache(imagemin({
-            interlaced: true,
-            svgoPlugins: [{removeViewBox: true}]
-        })))
-        .pipe(gulp.dest('dist/img'))
+        .pipe(image({
+            pngquant: true,
+            optipng: false,
+            zopflipng: true,
+            jpegRecompress: false,
+            mozjpeg: true,
+            guetzli: false,
+            gifsicle: true,
+            svgo: true,
+            concurrent: 10
+        }))
+        .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('fonts', function() {
@@ -211,7 +227,9 @@ gulp.task('fonts', function() {
 });
 
 /* Build project */
-gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'fonts-prod', 'img-prod']);
+gulp.task('build', ['hbs-prod', 'scss-prod', 'js-prod', 'fonts', 'img-prod']);
+
+gulp.task('build-ES5', ['hbs-prod', 'scss-prod', 'js-prod-ES5', 'fonts', 'img-prod']);
 /**/
 
 /* Archive */
